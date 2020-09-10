@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // car example
+        var polly = {
+            make: "Volkswagen",
+            model: "Polo",
+            year: 2012,
+            color: "black",
+            passengers: 5,
+            convertible: false,
+            mileage: 115000
+        }
+        var color_car = polly.color;
+        if (color_car == "black") {
+            console.log("Your car is black!")
+        }
+
+        function prequal(car) {
+            if (car.mileage > 120000) {
+                return false;
+            } else if (car.year < 2010) {
+                return false;
+            }
+            return true
+        }
+
+        var worthALook = prequal(polly);
+        if (worthALook) {
+            console.log("You gotta check out this " + polly.make + " " + polly.model);
+        } else {
+            console.log("You should really pass on the " + polly.make + " " + polly.model);
+        }
+
+        // dog example
+
+        var dog = {
+            name: "Fido",
+            weight: 20.2,
+            age: 4,
+            breed: "mixed",
+            activity: "fetch balls"
+        }
+        var bark;
+        if (dog.weight > 20) {
+            bark = "WOOF WOOF";
+        } else {
+            bark = "woof woof";
+        }
+        var speak = dog.name + " says: '" + bark + "' when he wants to " + dog.activity;
+        console.log(speak);
+
+        function loseWeight(dog, amount) {
+            dog.weight = dog.weight - amount;
+        }
+        loseWeight(dog, 10);
+        alert(dog.name + " now weighs " + dog.weight)
+
+        // sports team
+        function makeTeam() {
+            var cities = ["Washington", "New York", "Miami", "Los Angeles", "Seattle"];
+            var names = ["Cows", "Wolfs", "Foxes", "Eagles", "Tigers"];
+            var colors = ["red", "blue", "yellow", "black", "white"];
+            var sports = ["football", "soccer", "ice hockey", "basketball", "baseball"];
+
+            var rand1 = Math.floor(Math.random() * cities.length);
+            var rand2 = Math.floor(Math.random() * names.length);
+            var rand3 = Math.floor(Math.random() * colors.length);
+            var rand4 = Math.floor(Math.random() * sports.length);
+
+            var team = {
+                city: cities[rand1],
+                name: names[rand2],
+                color: colors[rand3],
+                sport: sports[rand4]
+            }
+            return team;
+        }
+        function displayTeam(team) {
+            console.log("Your new " + team.sport + " team is a " + team.city + " " + team.name + "!")
+            console.log("Main color of your team is " + team.color + ".")
+        }
+        var teamToPlay = makeTeam();
+        displayTeam(teamToPlay);
+
+
+
+        // other example
+        function getSecret(file, secretPassword) {
+            file.opened = file.opened + 1;
+            if (secretPassword == file.password) {
+                return file.contents;
+            } else {
+                return "Invalid password!";
+            }
+        }
+        function setSecret(file, secretPassword, secret) {
+            if (secretPassword == file.password) {
+                file.opened = 0;
+                file.contents = secret;
+            }
+        }
+
+        var superSecretFile = {
+            level: "Classified",
+            opened: 0,
+            password: 2,
+            contents: "Dr. Evel's next meeting is in Detroit."
+        };
+        var secret = getSecret(superSecretFile, 2);
+        console.log(secret);
+        setSecret(superSecretFile, 2, "Dr Evel's next meeting is in Miami")
+        secret = getSecret(superSecretFile, 2);
+        console.log(secret);
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
