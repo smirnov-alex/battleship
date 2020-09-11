@@ -14,8 +14,50 @@
             color: "black",
             passengers: 5,
             convertible: false,
-            mileage: 115000
-        }
+            mileage: 115000,
+            started: false,
+            fuel: 0,
+            //Добавим функции в объект
+            start: function () {
+                if (this.fuel > 0) {
+                    this.started = true;
+                } else {
+                    alert("The car is empty, fill up before starting!");
+                }
+            },
+            stop: function () {
+                this.started = false;
+            },
+            drive: function () {
+                if (this.started) {
+                    if (this.fuel > 0) {
+                        alert(this.make + " " + this.model + " goes vroom vroom!");
+                        this.fuel = this.fuel - 1;
+                    } else {
+                        alert("Uh no, out of fuel.");
+                        this.stop();
+                    }
+                } else {
+                    alert("You need to start the engine first.");
+                }
+            },
+            addFuel: function (amount) {
+                this.fuel = this.fuel + amount;
+            },
+        };
+        polly.start();
+        polly.drive();
+        polly.addFuel(2);
+        polly.start();
+        polly.drive();
+        polly.drive();
+        polly.drive();
+        polly.stop();
+        /*
+                for (var prop in polly) {
+                    console.log(prop + ": " + polly[prop]);
+                }
+        */
         var color_car = polly.color;
         if (color_car == "black") {
             console.log("Your car is black!")
@@ -87,6 +129,31 @@
         }
         var teamToPlay = makeTeam();
         displayTeam(teamToPlay);
+
+        // eightBall
+        var eightBall = {
+            index: 0,
+            advice: ["yes", "no", "maybe", "not a chance"],
+            shake: function () {
+                this.index = this.index + 1;
+                if (this.index >= this.advice.length) {
+                    this.index = 0;
+                }
+            },
+            look: function () {
+                return this.advice[this.index];
+            }
+        };
+        eightBall.shake();
+        console.log(eightBall.look());
+        eightBall.shake();
+        console.log(eightBall.look());
+        eightBall.shake();
+        console.log(eightBall.look());
+        eightBall.shake();
+        console.log(eightBall.look());
+        eightBall.shake();
+        console.log(eightBall.look());
 
 
 
